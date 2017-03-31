@@ -1,0 +1,27 @@
+Trabajo Práctico triángulo:
+Realizar un programa que lea tres datos enteros que representen la longitud de los lados de un triángulo.
+Comprobar:
+-En caso de que sean letras, sea inválido.
+-Datos ingresados positivos y mayores a 0. En caso de ser menor a 0, el programa emite un mensaje.
+-Si uno de los valores es incorrecto, debe poder reingresarlo.
+-La suma de los lados es menor a la otra longitud.
+-Si es correcto, debe decir que tipo de triángulo es.
+-Al finalizar se deberá preguntar si se quieren reingresar los valores o 0 para salir.
+Tests a realizar:
+1-Hacer un test con un triángulo escaleno válido.
+2-Hacer un test con un triángulo isósceles válido.
+3-Hacer un test con un triángulo equilatero válido.
+4-Hacer un test con un triángulo isósceles válido, con dos lados iguales y hay que probar la permutacion en los datos.
+5-Hacer una prueba en la cual un lado es igual a 0.
+6-Hacer una prueba en la cual un lado es igual a un numero negativo.
+7-Hacer un test con tres números positivos tales que la suma de dos de ellos sea igual al tercero.
+8-Hacer un test con tres números positivos tales que la suma de dos de ellos sea igual al tercero y haciendo permutaciones.
+9-Hacer un test con tres números positivos tales que la suma de los dos primeros sea menor que el tercero.
+10-Hacer un test con tres números positivos tales que la suma de los dos primeros sea menor que el tercero haciendo permutaciones.
+11-Hacer un test con tres valores iguales a 0.
+12-Hacer un test con un lado no sea un número entero.
+13-Hacer un test una cantidad incorrecto de valores.
+14-Hacer un test para cada uno de los casos mencionados, se especifico el resultado correcto?.
+
+Llevar impreso la carátula, lote de prueba, código.
+Código ejecutable para probar acá.
