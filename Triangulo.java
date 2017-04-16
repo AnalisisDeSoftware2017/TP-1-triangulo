@@ -1,4 +1,4 @@
-package triangulo;
+package pckTriangulo;
 
 import java.util.Scanner;
 
@@ -8,80 +8,126 @@ public class Triangulo {
 	String numero2;
 	String numero3;
 	
-	private String SonPositivos(int x, int y, int z){
-		if(EsNegativo(x))
-			return "EL 1er NUMERO INGRESADO NO ES POSITIVO";
-		else if(EsNegativo(y))
-			return "EL 2do NUMERO INGRESADO NO ES POSITIVO";
-		else 
-			return "EL 3er NUMERO INGRESADO NO ES POSITIVO";
+	
+	private int convertirAEntero(String numero){
+		return  Integer.parseInt(numero);
 	}
 	
-	private boolean EsNegativo(int numero){
-		return numero <0;
-	}
+	private boolean EsNegativo(String numero){
+		
+		if ( convertirAEntero(numero) <= 0){
+			System.out.println("EL NUMERO INGRESADO NO ES POSITIVO");
+			return true;
+		}
+		return false;
+	}	
 	
-	private boolean ValidarTriangulo(int x, int y, int z){
-		return ((x+y) <= z || (y+z) <= x || (x+z) <= y);
-	}
 	
-	private boolean EsLetra(String numero){
-		return tryParseInt(numero);
+	private boolean NoEsLetra(String numero){
+		if( tryParseInt(numero)){
+			return true;
+		}
+		System.out.println("EL NUMERO INGRESADO NO ES UN NUMERO");
+		return false;
 			
 	}
 	
 	private boolean tryParseInt(String value) {  
 	     try {  
-	         Integer.parseInt(value);  
+	    	 convertirAEntero(value);  
 	         return true;  
 	      } catch (NumberFormatException e) {  
 	         return false;  
 	      }  
 	}
 	
-	private String Tipo(int x, int y, int z) {
-		if(SonPositivos(x,y,z) == "" && ValidarTriangulo(x,y,z)) {
-			if(x == y && y ==z)
-				return "Equilatero";
-			else if(x != y && y !=z && z!=x )
-				return "Escaleno";
+	private boolean esTriangulo(int x, int y, int z){
+		return ((x+y) > z && (y+z) > x && (x+z) > y);
+	}
+	
+	private void Tipo(String x, String y, String z) {
+		int x1,y1,z1;
+		x1 = convertirAEntero(x);
+		y1 = convertirAEntero(y);
+		z1 = convertirAEntero(z);
+		
+		if(esTriangulo(x1,y1,z1)) {
+			if(x1 == y1 && y1 ==z1)
+				System.out.println("Equilatero");
+			else if(x1 != y1 && y1 !=z1 && z1!=x1 )
+				System.out.println ("Escaleno");
 			else 
-				return "Isosceles";
+				System.out.println( "Isosceles");
 		}
-		return "LOS LADOS INGRESARON NO FORMAN UN UN TRIANGULO";		
+		else{
+			System.out.println("LOS LADOS INGRESARON NO FORMAN UN  TRIANGULO");
+		}
 	}
 	
 	public static void main(String[] args) {
 	
-		Scanner entrada;
-		entrada = new Scanner(System.in);
+		Scanner entrada = new Scanner(System.in);
+		boolean esCorrecto = false;
+		String continuar = "";
+		
 		Triangulo t = new Triangulo();
 		
-		System.out.print("Bienvenido...");
-		System.out.print("Ingrese un numero: ");
-		t.numero1 = entrada.nextLine();
-		System.out.print("Ingrese otro numero: ");
-		t.numero2 = entrada.nextLine();
-		System.out.print("Ingrese el último numero: ");
-		t.numero3 = entrada.nextLine();
-		
-		while(!t.EsLetra(t.numero1)){
-			System.out.print("El 1er numero no es un numero");
-			System.out.print("Vuelva a ingresar el numero: ");
+		while(! continuar.equals("0")){
+			System.out.println("Bienvenido...");
+			System.out.print("Ingrese el primer numero: ");
 			t.numero1 = entrada.nextLine();
-		}
-		
-		while(!t.EsLetra(t.numero2)){
-			System.out.print("El 2do numero no es un numero");
-			System.out.print("Vuelva a ingresar el numero: ");
-			t.numero2 = entrada.nextLine();
-		}
-		
-		while(!t.EsLetra(t.numero3)){
-			System.out.print("El 3er numero no es un numero");
-			System.out.print("Vuelva a ingresar el numero: ");
-			t.numero3 = entrada.nextLine();
-		}
 			
+			while(! esCorrecto){
+				if (t.NoEsLetra(t.numero1)) {
+					if(! t.EsNegativo(t.numero1)){
+						esCorrecto = true;					
+					}				
+				}			
+				if(! esCorrecto){
+					System.out.print("Vuelva a ingresar el numero: ");
+					t.numero1 = entrada.nextLine();
+				}			
+			}
+			
+			System.out.print("Ingrese el segundo numero: ");
+			t.numero2 = entrada.nextLine();
+			
+			esCorrecto = false;
+			
+			while(! esCorrecto){
+				if (t.NoEsLetra(t.numero2)) {
+					if(! t.EsNegativo(t.numero2)){
+						esCorrecto = true;					
+					}				
+				}			
+				if(! esCorrecto){
+					System.out.print("Vuelva a ingresar el numero: ");
+					t.numero2 = entrada.nextLine();
+				}			
+			}
+			
+			System.out.print("Ingrese el tercer numero: ");
+			t.numero3 = entrada.nextLine();
+	
+			esCorrecto = false;
+			
+			while(! esCorrecto){
+				if (t.NoEsLetra(t.numero3)) {
+					if(! t.EsNegativo(t.numero3)){
+						esCorrecto = true;					
+					}				
+				}			
+				if(! esCorrecto){
+					System.out.print("Vuelva a ingresar el numero: ");
+					t.numero3 = entrada.nextLine();
+				}			
+			}
+			
+			t.Tipo(t.numero1, t.numero2, t.numero3);
+			
+			System.out.print("Si quiere reingresar los datos, presionar cualquier letra o 0 para salir: ");
+			continuar = entrada.nextLine();
+		}	
+		
 	}
 }
