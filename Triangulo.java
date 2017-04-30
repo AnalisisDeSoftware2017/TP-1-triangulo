@@ -71,11 +71,11 @@ public class Triangulo {
 				return true;					
 			}
 			else{
-				System.out.print("Nro incorrecto, por favor volver a ingresarlo");			
+				System.out.println("Nro incorrecto, por favor volver a ingresarlo");			
 			}	
 		}			
 		else{
-			System.out.print("Nro incorrecto, por favor volver a ingresarlo");			
+			System.out.println("Nro incorrecto, por favor volver a ingresarlo");			
 		}			
 		return false;
 	}
@@ -83,12 +83,11 @@ public class Triangulo {
 	public static void main(String[] args) {
 	
 		Scanner entrada = new Scanner(System.in);
-		boolean esCorrecto = false;
 		String continuar = "";
 		
 		Triangulo t = new Triangulo();
 		
-		while(! continuar.equals("0")){
+		do{
 			System.out.println("Bienvenido...");
 			
 			
@@ -114,7 +113,7 @@ public class Triangulo {
 			
 			System.out.print("Si quiere reingresar los datos, presionar cualquier letra o 0 para salir: ");
 			continuar = entrada.nextLine();
-		}	
+		}	while(!continuar.equals("0"));
 		
 	}
 }
