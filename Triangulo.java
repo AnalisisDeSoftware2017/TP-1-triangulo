@@ -9,7 +9,7 @@ public class Triangulo {
 	String numero3;
 	
 	
-	private int convertirAEntero(String numero){
+	private  int convertirAEntero(String numero){
 		return  Integer.parseInt(numero);
 	}
 	
@@ -64,6 +64,22 @@ public class Triangulo {
 		}
 	}
 	
+	private boolean validarLado(String x){
+		
+		if (NoEsLetra(x)) {
+			if(! EsNegativo(x)){
+				return true;					
+			}
+			else{
+				System.out.print("Nro incorrecto, por favor volver a ingresarlo");			
+			}	
+		}			
+		else{
+			System.out.print("Nro incorrecto, por favor volver a ingresarlo");			
+		}			
+		return false;
+	}
+	
 	public static void main(String[] args) {
 	
 		Scanner entrada = new Scanner(System.in);
@@ -74,54 +90,25 @@ public class Triangulo {
 		
 		while(! continuar.equals("0")){
 			System.out.println("Bienvenido...");
-			System.out.print("Ingrese el primer numero: ");
-			t.numero1 = entrada.nextLine();
 			
-			while(! esCorrecto){
-				if (t.NoEsLetra(t.numero1)) {
-					if(! t.EsNegativo(t.numero1)){
-						esCorrecto = true;					
-					}				
-				}			
-				if(! esCorrecto){
-					System.out.print("Vuelva a ingresar el numero: ");
-					t.numero1 = entrada.nextLine();
-				}			
-			}
 			
-			System.out.print("Ingrese el segundo numero: ");
-			t.numero2 = entrada.nextLine();
+			do{
+				System.out.print("Ingrese el primer lado: ");
+				t.numero1 = entrada.nextLine();
+				
+			}while(!t.validarLado(t.numero1));
 			
-			esCorrecto = false;
+			do{
+				System.out.print("Ingrese el segundo lado: ");
+				t.numero2 = entrada.nextLine();
+				
+			}while(!t.validarLado(t.numero2));
 			
-			while(! esCorrecto){
-				if (t.NoEsLetra(t.numero2)) {
-					if(! t.EsNegativo(t.numero2)){
-						esCorrecto = true;					
-					}				
-				}			
-				if(! esCorrecto){
-					System.out.print("Vuelva a ingresar el numero: ");
-					t.numero2 = entrada.nextLine();
-				}			
-			}
-			
-			System.out.print("Ingrese el tercer numero: ");
-			t.numero3 = entrada.nextLine();
-	
-			esCorrecto = false;
-			
-			while(! esCorrecto){
-				if (t.NoEsLetra(t.numero3)) {
-					if(! t.EsNegativo(t.numero3)){
-						esCorrecto = true;					
-					}				
-				}			
-				if(! esCorrecto){
-					System.out.print("Vuelva a ingresar el numero: ");
-					t.numero3 = entrada.nextLine();
-				}			
-			}
+			do{
+				System.out.print("Ingrese el tercer lado: ");
+				t.numero3 = entrada.nextLine();
+				
+			}while(!t.validarLado(t.numero3));
 			
 			t.Tipo(t.numero1, t.numero2, t.numero3);
 			
